@@ -1,16 +1,31 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './App.css';
-
+//import Welcome from './Welcome.js';
 import Message from './Message.js';
+import Logo from './logo.svg';
 
+var Welcome = {
+    username: "LadyLiberty",
+    content: <p>Hello I'm LadyLiberty, here to help you with all your 
+                Liberty Mutual Insurance Questions. What can I help you
+                with today?</p>,
+    img: Logo,
+};
 class Chatroom extends React.Component {
+    
     constructor(props) {
         super(props);
 
         this.state = {
             chats: [{
-                username: "Kevin Hsu",
+                username: "LadyLiberty",
+                content: <p>Hello I'm LadyLiberty, here to help you with all your 
+                            Liberty Mutual Insurance Questions. What can I help you
+                            with today?</p>,
+                img: Logo,
+            }, {
+                username: "User",
                 content: <p>Hello World!</p>,
                 img: "http://i.imgur.com/Tj5DGiO.jpg",
             }]
@@ -36,7 +51,7 @@ class Chatroom extends React.Component {
 
         this.setState({
             chats: this.state.chats.concat([{
-                username: "Kevin Hsu",
+                username: "User",
                 content: <p>{ReactDOM.findDOMNode(this.refs.msg).value}</p>,
                 img: "http://i.imgur.com/Tj5DGiO.jpg",
             }])
@@ -46,7 +61,7 @@ class Chatroom extends React.Component {
     }
 
     render() {
-        const username = "Kevin Hsu";
+        const username = "User";
         const { chats } = this.state;
 
         return (
