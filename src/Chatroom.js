@@ -4,7 +4,6 @@ import './App.css';
 import Welcome from './Welcome.js';
 import Message from './Message.js';
 import Logo from './logo.svg';
-var content ={content: <p> Helloooooo</p>};
 
 class Chatroom extends React.Component {
     constructor(props) {
@@ -17,7 +16,7 @@ class Chatroom extends React.Component {
                             Liberty Mutual Insurance Questions. What can I help you
                             with today?</p>,
                 img: Logo,
-            },{username: "LadyLiberty", content:content.content, img: Logo}],
+            }],
             response: true,
             input:<p>{" MSG"}</p>,
             res:";"
@@ -54,6 +53,8 @@ class Chatroom extends React.Component {
             ReactDOM.findDOMNode(this.refs.msg).value = "";
         });
     }
+
+
     response(){
         //e.preventDefault();
         this.setState({
@@ -98,12 +99,14 @@ class Chatroom extends React.Component {
                         chats.map((chat) => 
                             <Message chat={chat} user={username} />
                         )
-                    }{this.state.response ? false:
-                            this.response()
-                        }
+                    }
                         
                     
                 </ul>
+                {this.state.response ? false:
+                            this.response()
+                        }
+                        
                 <form className="input" onSubmit={(e) => this.submitMessageRES(e)}>
                     <input type="text" ref="msg" />
                     <input type="submit" value="Submit" />
@@ -113,6 +116,8 @@ class Chatroom extends React.Component {
         );
     }
 }
+
+
 
 
 export default Chatroom;

@@ -75,6 +75,7 @@ p {
 /* Left chat */
 .chatroom .chats .chat.left {
   background: #f2c760;
+  clear:both;
   padding: 10px 13px;
   font-size: 14px;
   border-radius: 10px;
