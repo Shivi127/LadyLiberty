@@ -1,13 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './App.css';
-//import Welcome from './Welcome.js';
+import Welcome from './welcome.js';
 import Message from './Message.js';
-//import Logo from './logo.svg';
-import Logo from './lmicon.jpg';
+import Logo from './logo.svg';
+var content ={content: <p> Helloooooo</p>};
 
 class Chatroom extends React.Component {
-    
     constructor(props) {
         super(props);
 
@@ -18,14 +17,17 @@ class Chatroom extends React.Component {
                             Liberty Mutual Insurance Questions. What can I help you
                             with today?</p>,
                 img: Logo,
-            }, {
-                username: "User",
-                content: <p>Hello World!</p>,
-                img: Logo,
-            }]
+            },{username: "LadyLiberty", content:content.content, img: Logo}],
+            response: true,
+            input:<p>{" MSG"}</p>,
+            res:";"
         };
 
         this.submitMessage = this.submitMessage.bind(this);
+    }
+
+    checkresponse(){
+        return this.state.response;
     }
 
     componentDidMount() {
@@ -42,10 +44,9 @@ class Chatroom extends React.Component {
 
     submitMessage(e) {
         e.preventDefault();
-
         this.setState({
             chats: this.state.chats.concat([{
-                username: "User",
+                username: 'User',
                 content: <p>{ReactDOM.findDOMNode(this.refs.msg).value}</p>,
                 img: "http://i.imgur.com/Tj5DGiO.jpg",
             }])
@@ -53,6 +54,38 @@ class Chatroom extends React.Component {
             ReactDOM.findDOMNode(this.refs.msg).value = "";
         });
     }
+    response(){
+        //e.preventDefault();
+        this.setState({
+            chats: this.state.chats.concat([{
+                username: 'LadyLiberty',
+                content:this.state.input,
+                img: "http://i.imgur.com/Tj5DGiO.jpg",
+            }])
+        }, () => {
+            ReactDOM.findDOMNode(this.refs.msg).value = "";
+        });
+        this.state.response = true;
+    }
+
+    submitMessageRES(e) {
+        this.state.response = false;
+        var con = <p>{ReactDOM.findDOMNode(this.refs.msg).value}</p>;
+        this.state.input = con;
+        e.preventDefault();
+        this.setState({
+            chats: this.state.chats.concat([{
+                username: 'User',
+                content: con,
+                img: "http://i.imgur.com/Tj5DGiO.jpg",
+            }])
+        }, () => {
+            ReactDOM.findDOMNode(this.refs.msg).value = "";
+        }); 
+        
+    }
+
+    
 
     render() {
         const username = "User";
@@ -60,16 +93,19 @@ class Chatroom extends React.Component {
 
         return (
             <div className="chatroom">
-                <h3>Support</h3>
+                <h3>LadyLiberty</h3>
                 <ul className="chats" ref="chats">
                     {
                         chats.map((chat) => 
                             <Message chat={chat} user={username} />
                         )
-                    }
+                    }{this.state.response ? false:
+                            this.response()
+                        }
+                        
                     
                 </ul>
-                <form className="input" onSubmit={(e) => this.submitMessage(e)}>
+                <form className="input" onSubmit={(e) => this.submitMessageRES(e)}>
                     <input type="text" ref="msg" />
                     <input type="submit" value="Submit" />
                     <button><i className="fa fa-microphone"></i></button>
@@ -79,4 +115,7 @@ class Chatroom extends React.Component {
     }
 }
 
+
 export default Chatroom;
+
+
