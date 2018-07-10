@@ -148,10 +148,6 @@ p {
   color: rgb(0, 0, 0);
 }
 
-.hide {
-  display:none;
-}
-
 button {
   -webkit-appearance: none;
   -moz-appearance: none;

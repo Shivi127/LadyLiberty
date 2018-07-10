@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './App.css';
-import Welcome from './welcome.js';
+import Welcome from './Welcome.js';
 import Message from './Message.js';
 import Logo from './logo.svg';
 var content ={content: <p> Helloooooo</p>};
@@ -84,7 +84,6 @@ class Chatroom extends React.Component {
         }); 
         
     }
-
     
 
     render() {
