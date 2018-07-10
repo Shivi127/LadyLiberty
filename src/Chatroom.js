@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import './App.css';
 //import Welcome from './Welcome.js';
 import Message from './Message.js';
-import Logo from './logo.svg';
-
+//import Logo from './logo.svg';
+import Logo from './lmicon.jpg';
 
 class Chatroom extends React.Component {
     
@@ -21,7 +21,7 @@ class Chatroom extends React.Component {
             }, {
                 username: "User",
                 content: <p>Hello World!</p>,
-                img: "http://i.imgur.com/Tj5DGiO.jpg",
+                img: Logo,
             }]
         };
 
@@ -60,17 +60,19 @@ class Chatroom extends React.Component {
 
         return (
             <div className="chatroom">
-                <h3>Chilltime</h3>
+                <h3>Support</h3>
                 <ul className="chats" ref="chats">
                     {
                         chats.map((chat) => 
                             <Message chat={chat} user={username} />
                         )
                     }
+                    
                 </ul>
                 <form className="input" onSubmit={(e) => this.submitMessage(e)}>
                     <input type="text" ref="msg" />
                     <input type="submit" value="Submit" />
+                    <button><i className="fa fa-microphone"></i></button>
                 </form>
             </div>
         );

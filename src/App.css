@@ -1,7 +1,14 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans|Pacifico');
-
+html {
+  height: 100%;
+}
 body {
+  padding: 0;
   margin: 0;
+  font-family: "HelveticaNeueLight", "HelveticaNeue-Light", "Helvetica Neue Light", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosRegular', "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
+  font-weight: 300;
+  background: #f7f7f7 url(./images/libertymutual.jpg) 0 0 no-repeat;
+  background-size: cover;
+  color: #333;
 }
 
 p {
@@ -17,7 +24,11 @@ p {
   justify-content: center;
 }
 
+/* Chat box */
 .chatroom {
+  position:fixed;
+  right:15px;
+  bottom:0;
   width: 360px;
   height: 600px;
   background-color: #f9f9f9;
@@ -26,8 +37,20 @@ p {
   box-shadow: 0 0 8px 0 rgba(0,0,0, 0.3);
 }
 
+.chat-closed {
+  width: 250px;
+  height: 35px;
+  background: #8bc34a;
+  line-height: 35px;
+  font-size: 18px;
+  text-align: center;
+  border:1px solid #777;
+  color: #000;
+}
+
+/* Title of chat box */
 .chatroom h3 {
-  font-family: 'Pacifico', cursive;
+  font-family: 'Arial';
   background-color: #002663;
   color: #FFF;
   margin: 0;
@@ -38,45 +61,49 @@ p {
   justify-content: center;
 }
 
+/* Chat log */
 .chatroom .chats {
+  width: 100%;
   box-sizing: border-box;
   padding: 0 20px;
   margin: 10px 0 0;
   height: 510px;
   overflow-y: scroll;
+  border: #b0b1b2;
 }
 
-.chatroom .chats .chat {
-  background: #FFFFFF;
-  position: relative;
-  padding: 5px 13px;
+/* Left chat */
+.chatroom .chats .chat.left {
+  background: #f2c760;
+  padding: 10px 13px;
   font-size: 14px;
   border-radius: 10px;
-  border-color: #b0b1b2;
   list-style: none;
-  float: left;
-  clear: both;
-  margin: 10px 0;
-  max-width: 200px;
-}
-
-.chatroom .chats .chat img {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  position: absolute;
-  top: -10px;
-  left: 0px;
+  margin: 4px 0;
 }
 
 .chatroom .chats .chat.right {
+  background: #ffffff;
   float: right;
   clear: both;
+  border: 1px solid #b0b1b2;
+  padding: 5px 13px;
+  font-size: 14px;
+  border-radius: 10px;
+  list-style: none;
+  margin: 4px 0;
 }
 
+.chatroom .chats .chat img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+/* links */
 .chatroom .chats .chat a {
   text-decoration: none;
-  color:#3498DB;
+  color:#1b75bb;
 }
 
 .chatroom .input {
@@ -121,4 +148,55 @@ p {
   color: rgb(0, 0, 0);
 }
 
+.hide {
+  display:none;
+}
 
+button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  left: 1px;
+  width: 30px;
+  height: 30px;
+  border: 0;
+  border-radius: 50%;
+  padding: .5em .5em;
+  margin: 3px;
+  text-align: center;
+  color: #fff;
+  background: #d97a23;
+  will-change: transform, filter;
+  transition: all 0.3s ease-out;
+}
+
+button .fa {
+  font-size: 20px;
+  line-height: 0px;
+  margin: 0;
+  text-shadow: 1px 2px 2px #2a8b90;
+}
+
+button:hover {
+  transform: scale(.92);
+}
+
+button:active {
+  filter: brightness(.8);
+}
+
+button:focus {
+  outline: 0;
+}
+
+.fa {
+  font: normal normal normal 5px/1 FontAwesome;
+  font-size: 1.3em;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin-left: 10px;
+}
+
+.fa-github::before {
+    content: "\f09b";
+}
