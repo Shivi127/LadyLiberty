@@ -4,6 +4,9 @@ import './App.css';
 import Welcome from './Welcome.js';
 import Message from './Message.js';
 import Logo from './logo.svg';
+import io from 'socket.io-client'
+
+
 
 class Chatroom extends React.Component {
     constructor(props) {
@@ -23,8 +26,33 @@ class Chatroom extends React.Component {
         };
 
         this.submitMessage = this.submitMessage.bind(this);
+
+       
+            this.socket = io.connect('http://localhost:3000');
+            this.socket.on('bot reply', function(text){
+                console.log(text)});
     }
 
+
+
+    message(text) {
+        this.socket.emit('chat message', text);
+        console.log('I got heree!!');
+    }
+
+    botreply(text){
+        console.log('Text', text);
+        this.setState({
+            chats: this.state.chats.concat([{
+                username: 'User',
+                content: text,
+                img: "http://i.imgur.com/Tj5DGiO.jpg",
+            }])
+        }, () => {
+            ReactDOM.findDOMNode(this.refs.msg).value = "";
+        }); 
+        this.state.response = true;
+    }
     checkresponse(){
         return this.state.response;
     }
@@ -71,6 +99,8 @@ class Chatroom extends React.Component {
 
     submitMessageRES(e) {
         this.state.response = false;
+        var temp  = ReactDOM.findDOMNode(this.refs.msg).value;
+        this.message(temp);
         var con = <p>{ReactDOM.findDOMNode(this.refs.msg).value}</p>;
         this.state.input = con;
         e.preventDefault();
