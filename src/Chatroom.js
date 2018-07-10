@@ -21,7 +21,7 @@ class Chatroom extends React.Component {
                 img: Logo,
             }],
             response: true,
-            input:<p>{" MSG"}</p>,
+            input:"",
             res:";"
         };
 
@@ -29,8 +29,10 @@ class Chatroom extends React.Component {
 
        
             this.socket = io.connect('http://localhost:3000');
-            this.socket.on('bot reply', function(text){
-                console.log(text)});
+            this.socket.on('bot reply', (text)=>{
+                console.log('THIS IS THE TEXT' + text);
+                this.botreply(text);
+            });
     }
 
 
@@ -44,7 +46,7 @@ class Chatroom extends React.Component {
         console.log('Text', text);
         this.setState({
             chats: this.state.chats.concat([{
-                username: 'User',
+                username: 'LadyLiberty',
                 content: text,
                 img: "http://i.imgur.com/Tj5DGiO.jpg",
             }])
@@ -85,10 +87,11 @@ class Chatroom extends React.Component {
 
     response(){
         //e.preventDefault();
+        var temp = this.state.input;
         this.setState({
             chats: this.state.chats.concat([{
                 username: 'LadyLiberty',
-                content:this.state.input,
+                content:<p>{temp}</p>,
                 img: "http://i.imgur.com/Tj5DGiO.jpg",
             }])
         }, () => {
@@ -133,9 +136,9 @@ class Chatroom extends React.Component {
                         
                     
                 </ul>
-                {this.state.response ? false:
-                            this.response()
-                        }
+                {/*{this.state.response ? false:*/}
+                            {/*this.response()*/}
+                        {/*}*/}
                         
                 <form className="input" onSubmit={(e) => this.submitMessageRES(e)}>
                     <input type="text" ref="msg" />

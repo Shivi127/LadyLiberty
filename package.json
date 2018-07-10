@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "ajv": "^6.5.2",
     "apiai": "^4.0.3",
     "apiai-proxy": "^1.0.3",
     "classnames": "^2.2.6",
