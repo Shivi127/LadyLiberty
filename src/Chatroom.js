@@ -1,12 +1,10 @@
-import React from 'react';
+import React, { PropTypes } from 'react'
 import ReactDOM from 'react-dom';
 import './App.css';
-import Welcome from './Welcome.js';
 import Message from './Message.js';
 import Logo from './logo.svg';
 import io from 'socket.io-client'
-
-
+import Speech from './Speech.js'
 
 class Chatroom extends React.Component {
     constructor(props) {
@@ -34,7 +32,6 @@ class Chatroom extends React.Component {
                 this.botreply(text);
             });
     }
-
 
 
     message(text) {
@@ -84,7 +81,6 @@ class Chatroom extends React.Component {
         });
     }
 
-
     response(){
         //e.preventDefault();
         var temp = this.state.input;
@@ -133,26 +129,18 @@ class Chatroom extends React.Component {
                             <Message chat={chat} user={username} />
                         )
                     }
-                        
                     
                 </ul>
-                {/*{this.state.response ? false:*/}
-                            {/*this.response()*/}
-                        {/*}*/}
                         
                 <form className="input" onSubmit={(e) => this.submitMessageRES(e)}>
                     <input type="text" ref="msg" />
                     <input type="submit" value="Submit" />
-                    <button><i className="fa fa-microphone"></i></button>
+                    
+                    
                 </form>
             </div>
         );
     }
 }
 
-
-
-
 export default Chatroom;
-
-
